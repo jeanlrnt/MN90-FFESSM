@@ -1,0 +1,148 @@
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(160deg, #70e1f5, #445ef7);
+  font-family: Lato, sans-serif;
+  padding: clamp(20px, 5vw, 40px) 10px;
+  color: #161616;
+}
+
+main {
+  max-width: 750px;
+  min-height: 370px;
+  margin: 20px auto 0;
+  border-radius: 10px;
+  padding: 10px 20px 20px;
+  color: #212121;
+  background-color: #f1f1f1bb;
+  box-shadow: 0 5px 5px rgba(0,0,0,0.3);
+  position: relative;
+}
+h1 {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 800;
+}
+h2 {
+    font-size: 22px;
+    font-weight: 600;
+    padding-top: 20px;
+}
+h3 {
+    font-size: 18px;
+    font-weight: 600;
+    padding: 20px 0 15px;
+}
+label {
+    font-size: 18px;
+    display: block;
+    position: relative;
+    padding: 10px 0;
+}
+input {
+    display: block;
+    width: 100%;
+    font-size: 18px;
+    color: #222222;
+    padding: 5px;
+    background: #f1F1F1;
+    border-radius: 5px;
+    border: none;
+    outline: 0;
+    border-bottom: 1px solid #f1f1f1;
+}
+.checkbox {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 4em;
+    margin: 15px 0;
+}
+.checkbox .label {
+    font-size: 22px;
+    padding: 10px 0;
+    font-weight: 600;
+}
+/* toggle-pill-color */
+.checkbox input[type="checkbox"] {
+    display: none;
+}
+.checkbox input[type="checkbox"] + label {
+display: block;
+position: relative;
+width: 3em;
+height: 1.6em;
+border-radius: 1em;
+background: #e84d4d;
+box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.3);
+cursor: pointer;
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+-webkit-transition: background 0.1s ease-in-out;
+transition: background 0.1s ease-in-out;
+}
+.checkbox input[type="checkbox"] + label:before {
+content: "";
+display: block;
+width: 1.2em;
+height: 1.2em;
+border-radius: 1em;
+background: #fff;
+box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
+position: absolute;
+left: 0.2em;
+top: 0.2em;
+-webkit-transition: all 0.2s ease-in-out;
+transition: all 0.2s ease-in-out;
+}
+.checkbox input[type="checkbox"]:checked + label {
+background: #47cf73;
+}
+.checkbox input[type="checkbox"]:checked + label:before {
+box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.2);
+left: 1.6em;
+}
+/* toggle-pill-color end */
+form > div{
+    margin: 5px 0;
+}
+div[data-second_dive] {
+    display: none;
+}
+
+form input[type=submit] {
+    min-width: 150px;
+    display: block;
+    margin: 20px auto 0px;
+    padding: 12px 15px;
+    background-color: #4c9cff;
+    border: 1px solid #f1f1f13d;
+    color: #f1f1f1;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+form input[type=submit]:hover {
+    background-color: #1565c8;
+}
+.results {
+    display: flex;
+    justify-content: space-evenly;
+}
+.results > div {
+    margin-top: 10px;
+    text-align: center;
+}
+.results p {
+    padding: 4px 0;
+}

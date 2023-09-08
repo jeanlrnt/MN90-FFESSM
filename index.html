@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MN90 - FFESSM</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Roboto:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <h1>MN90-FFESSM</h1>
+        <form>
+            <h2>First dive</h2>
+            <div>
+                <label for="ddepth1">Depth</label>
+                <input type="number" name="ddepth1" id="ddepth1" min="0" required>
+            </div>
+            <div>
+                <label for="dduration1">Duration</label>
+                <input type="number" name="dduration1" id="dduration1" min="0" required>
+            </div>
+            <div class="checkbox">
+                <p class="label">Second dive</p>
+                <input type="checkbox" name="second_dive" id="second_dive">
+                <label for="second_dive"></label>
+            </div>
+            <div data-second_dive>
+                <label for="interval">Surface interval (min)</label>
+                <input type="number" name="interval" id="interval" min="0">
+            </div>
+            <div data-second_dive>
+                <label for="ddepth2">Depth</label>
+                <input type="number" name="ddepth2" id="ddepth2" min="0">
+            </div>
+            <div data-second_dive>
+                <label for="dduration2">Duration</label>
+                <input type="number" name="dduration2" id="dduration2" min="0">
+            </div>
+            <input type="submit" value="Calculate">
+        </form>
+      </div>
+      <div class="results">
+
+      </div>
+    </main>
+    <script src="MN90.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
