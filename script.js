@@ -75,7 +75,6 @@ function handleSubmit(e) {
         results.innerHTML = ""
         variables.innerHTML = ""
         errors.innerHTML = e.message
-        console.error(e)
     }
 }
 
@@ -89,7 +88,6 @@ function calculate() {
         throw new Error(`<div>This dive time (${inputDuration1.value}min) does not exist in the ${refDepth1}m table</div>`)
     addVariable(`Reference duration for ${inputDuration1.value} minutes`, refDuration1, "min")
 
-    console.log( Mn90P, refDepth1 +""+ refDuration1);
     firstDiveStop = Mn90P[refDepth1 +""+ refDuration1]
     addVariable(`GPS for ${refDuration1} minutes in the ${refDepth1} meters table`, firstDiveStop[5])
 
