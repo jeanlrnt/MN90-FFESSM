@@ -10,14 +10,14 @@ body {
   min-height: 100vh;
   background: linear-gradient(160deg, #70e1f5, #445ef7);
   font-family: Lato, sans-serif;
-  padding: clamp(20px, 5vw, 40px) 10px;
+  padding: clamp(5px, 5vw, 25px) 10px;
   color: #161616;
 }
 
 main {
   max-width: 750px;
   min-height: 370px;
-  margin: 20px auto 0;
+  margin: 0 auto;
   border-radius: 10px;
   padding: 10px 20px 20px;
   color: #212121;
@@ -38,20 +38,20 @@ h2 {
 h3 {
     font-size: 18px;
     font-weight: 600;
-    padding: 20px 0 15px;
+    padding: 10px 0;
 }
 label {
     font-size: 18px;
     display: block;
     position: relative;
-    padding: 10px 0;
+    padding: 5px 0;
 }
 input {
     display: block;
     width: 100%;
     font-size: 18px;
     color: #222222;
-    padding: 5px;
+    padding: 7px 5px;
     background: #f1F1F1;
     border-radius: 5px;
     border: none;
@@ -63,7 +63,7 @@ input {
     justify-content: left;
     align-items: center;
     gap: 4em;
-    margin: 15px 0;
+    margin: 8px 0;
 }
 .checkbox .label {
     font-size: 22px;
@@ -121,7 +121,7 @@ div[data-second_dive] {
 form input[type=submit] {
     min-width: 150px;
     display: block;
-    margin: 20px auto 0px;
+    margin: 15px auto 0px;
     padding: 12px 15px;
     background-color: #4c9cff;
     border: 1px solid #f1f1f13d;
@@ -145,4 +145,19 @@ form input[type=submit]:hover {
 }
 .results p {
     padding: 4px 0;
+}
+.variables p:first-child {
+    margin-top: 20px;
+}
+.variables p span {
+    font-weight: 600;
+}
+.errors {
+    color: #e84d4d;
+    font-size: 1.2em;
+    font-weight: 600;
+    text-align: center;
+}
+.errors div {
+    padding: 20px 0 0;
 }

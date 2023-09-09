@@ -20,11 +20,11 @@
         <form>
             <h2>First dive</h2>
             <div>
-                <label for="ddepth1">Depth</label>
+                <label for="ddepth1">Depth (m)</label>
                 <input type="number" name="ddepth1" id="ddepth1" min="0" required>
             </div>
             <div>
-                <label for="dduration1">Duration</label>
+                <label for="dduration1">Duration (min)</label>
                 <input type="number" name="dduration1" id="dduration1" min="0" required>
             </div>
             <div class="checkbox">
@@ -37,19 +37,19 @@
                 <input type="number" name="interval" id="interval" min="0">
             </div>
             <div data-second_dive>
-                <label for="ddepth2">Depth</label>
+                <label for="ddepth2">Depth (m)</label>
                 <input type="number" name="ddepth2" id="ddepth2" min="0">
             </div>
             <div data-second_dive>
-                <label for="dduration2">Duration</label>
+                <label for="dduration2">Duration (min)</label>
                 <input type="number" name="dduration2" id="dduration2" min="0">
             </div>
             <input type="submit" value="Calculate">
         </form>
       </div>
-      <div class="results">
-
-      </div>
+      <div class="results"></div>
+      <div class="variables"></div>
+      <div class="errors"></div>
     </main>
     <script src="MN90.js"></script>
     <script src="script.js"></script>
