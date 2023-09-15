@@ -1,6 +1,6 @@
 const checkbox = document.querySelector('#second_dive')
 checkbox.addEventListener('change', handleSecondDive)
-function handleSecondDive(e) {
+function handleSecondDive() {
     secondDive = !secondDive
     const secondDiveInputs = document.querySelectorAll('div[data-second_dive]')
     secondDiveInputs.forEach(input => {
@@ -35,16 +35,16 @@ function posPrev(needle, haystack) {
 function displayDivingStop(divingStop) {
     let result = ""
     if (divingStop[0])
-        result += `<p>3m stop : ${divingStop[0]}min</p>`
+        result += `<p>3${dictionary.m} : ${divingStop[0]}${dictionary.min}</p>`
     if (divingStop[1])
-        result += `<p>6m stop : ${divingStop[1]}min</p>`
+        result += `<p>6${dictionary.m} : ${divingStop[1]}${dictionary.min}</p>`
     if (divingStop[2])
-        result += `<p>9m stop : ${divingStop[2]}min</p>`
+        result += `<p>9${dictionary.m} : ${divingStop[2]}${dictionary.min}</p>`
     if (divingStop[3])
-        result += `<p>12m stop : ${divingStop[3]}min</p>`
+        result += `<p>12${dictionary.m} : ${divingStop[3]}${dictionary.min}</p>`
     if (divingStop[4])
-        result += `<p>15m stop : ${divingStop[4]}min</p>`
-    return result ? result : "No dive stop required"
+        result += `<p>15${dictionary.m} : ${divingStop[4]}${dictionary.min}</p>`
+    return result ? result : dictionary.Ndsr
 }
 
 const formSubmit = document.querySelector("input[type=submit]")
@@ -58,8 +58,9 @@ const errors = document.querySelector('.errors')
 function handleSubmit(e) {
     e.preventDefault()
     try {
-        if (!inputDepth1.value || !inputDuration1.value || inputDepth1.value <= 0 || inputDuration1.value <= 0) 
-            throw new Error(`<div>Depth and Duration values must be positive</div>`)
+        if (!inputDepth1.value || !inputDuration1.value || inputDepth1.value <= 0 || inputDuration1.value <= 0) {
+            throw new Error(`<div>${dictionary.Dadvmbp}</div>`)
+        }
         results.innerHTML = ""
         variables.innerHTML = ""
         errors.innerHTML = ""
@@ -77,49 +78,49 @@ const inputInterval = document.querySelector('#interval')
 let secondDive = false
 let firstDiveStop = []
 function calculate() {
-    firstDiveStop = calculateSimpleDive('First Dive', inputDepth1.value, inputDuration1.value)
-    
+    firstDiveStop = calculateSimpleDive(dictionary.Fd, inputDepth1.value, inputDuration1.value)
+
     if (secondDive && inputDepth2.value && inputDuration2.value) {
-        if (firstDiveStop[5] === '*') 
-            throw new Error(`<div>This successive dive is prohibited by the tables for security reasons</div>`)
-        if (inputDepth2.value <= 0 || inputDuration2.value <= 0) 
-            throw new Error(`<div>Depth and Duration values must be positive</div>`)
+        if (firstDiveStop[5] === '*')
+            throw new Error(`<div>${dictionary.Tsdipbttfsr}</div>`)
+        if (inputDepth2.value <= 0 || inputDuration2.value <= 0)
+            throw new Error(`<div>${dictionary.Dadvmbp}</div>`)
         const refIntervalPos = posPrev(inputInterval.value, Mn90Interval)
         const refInterval = prev(inputInterval.value, Mn90Interval)
         if (!refInterval && Number(inputInterval.value) < 15) {
             results.innerHTML = ""
             variables.innerHTML = ""
 
-            firstDiveStop = calculateSimpleDive('First Dive', Math.max(inputDepth1.value, inputDepth2.value), Number(inputDuration1.value) + Number(inputDuration2.value))
+            firstDiveStop = calculateSimpleDive(dictionary.Fd, Math.max(inputDepth1.value, inputDepth2.value), Number(inputDuration1.value) + Number(inputDuration2.value))
             return
         }
         if (!Mn90Cr[firstDiveStop[5]][refIntervalPos]) {
-            calculateSimpleDive('Second Dive', inputDepth2.value, inputDuration2.value)
+            calculateSimpleDive(dictionary.Sd, inputDepth2.value, inputDuration2.value)
             return
         }
-        addVariable(`Reference interval for ${inputInterval.value} minutes`, refInterval, "min")
+        addVariable(`${dictionary.Rif} ${inputInterval.value} ${dictionary.minutes}`, refInterval, `${dictionary.min}`)
 
         const nitCoef = Mn90Cr[firstDiveStop[5]][refIntervalPos]
         const refCoefPos = posNext(nitCoef, TbCoeff)
         const refCoef = next(nitCoef, TbCoeff)
-        addVariable(`Reference residual nitrogen coefficient for ${nitCoef}`, refCoef)
+        addVariable(`${dictionary.Rrncf} ${nitCoef}`, refCoef)
 
         const refDepth2 = next(inputDepth2.value, Mn90Prof2)
         if (!refDepth2)
-            throw new Error(`<div>There is no table for this depth (${inputDepth2.value}m)</div>`)
-        addVariable(`Reference depth for ${inputDepth2.value} meters`, refDepth2, "m")
+            throw new Error(`<div>${dictionary.Tintftd} (${inputDepth2.value}${dictionary.m})</div>`)
+        addVariable(`${dictionary.Rdf} ${inputDepth2.value} ${dictionary.meters}`, refDepth2, `${dictionary.m}`)
 
         const increase = Majo[refDepth2][refCoefPos]
-        addVariable(`Second dive increase`, increase, "min")
+        addVariable(`${dictionary.Sdi}`, increase, `${dictionary.min}`)
 
         const increasedDuration = Number(inputDuration2.value) + increase
         const refDuration2 = next(increasedDuration, Mn90T[refDepth2])
         if (!refDuration2)
-            throw new Error(`<div>This dive time (${refDuration2}) does not exist in the ${refDepth2}m table</div>`)
-        addVariable(`Reference duration for ${increasedDuration} minutes`, refDuration2, "min")
+            throw new Error(`<div>${dictionary.Tdtdneitt.replace(':1:', increasedDuration).replace(':2:', refDepth2)}</div>`)
+        addVariable(`${dictionary.Rduf} ${increasedDuration} ${dictionary.minutes}`, refDuration2, `${dictionary.min}`)
         let secondDiveStop = Mn90P[refDepth2 +""+ refDuration2]
 
-        results.innerHTML += `<div><h3>Second Dive</h3>
+        results.innerHTML += `<div><h3>${dictionary.Sd}</h3>
         ${displayDivingStop(secondDiveStop)}</div>`
     }
 }
@@ -131,15 +132,15 @@ function addVariable(label, value, unit = "") {
 function calculateSimpleDive(label, inputDepth, inputDuration) {
     const refDepth = next(inputDepth, Mn90Prof)
     if (!refDepth)
-        throw new Error(`<div>There is no table for this depth (${inputDepth}m)</div>`)
-    addVariable(`Reference depth for ${inputDepth} meters`, refDepth, "m")
+        throw new Error(`<div>${dictionary.Tintftd} (${inputDepth}${dictionary.m})</div>`)
+    addVariable(`${dictionary.Rdf} ${inputDepth} ${dictionary.meters}`, refDepth, `${dictionary.m}`)
     const refDuration = next(inputDuration, Mn90T[refDepth])
-    if (!refDuration) 
-        throw new Error(`<div>This dive time (${inputDuration}min) does not exist in the ${refDepth}m table</div>`)
-    addVariable(`Reference duration for ${inputDuration} minutes`, refDuration, "min")
+    if (!refDuration)
+        throw new Error(`<div>${dictionary.Tdtdneitt.replace(':1:', inputDuration).replace(':2:', refDepth)}</div>`)
+    addVariable(`${dictionary.Rduf} ${inputDuration} ${dictionary.minutes}`, refDuration, `${dictionary.min}`)
 
     const diveStop = Mn90P[refDepth +""+ refDuration]
-    addVariable(`GPS for ${refDuration} minutes in the ${refDepth} meters table`, diveStop[5])
+    addVariable(`${dictionary.GPSfxmitxmt.replace(':1:', refDuration).replace(':2:', refDepth)}`, diveStop[5])
 
     results.innerHTML += `<div><h3>${label}</h3>
     ${displayDivingStop(diveStop)}</div>`
