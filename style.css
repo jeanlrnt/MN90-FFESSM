@@ -81,7 +81,7 @@ width: 3em;
 height: 1.6em;
 border-radius: 1em;
 background: #e84d4d;
-box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.3);
+box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
 cursor: pointer;
 -webkit-user-select: none;
 -moz-user-select: none;
@@ -96,7 +96,7 @@ width: 1.2em;
 height: 1.2em;
 border-radius: 1em;
 background: #fff;
-box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
+box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
 position: absolute;
 left: 0.2em;
 top: 0.2em;
@@ -107,7 +107,7 @@ transition: all 0.2s ease-in-out;
 background: #47cf73;
 }
 .checkbox input[type="checkbox"]:checked + label:before {
-box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.2);
+box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
 left: 1.6em;
 }
 /* toggle-pill-color end */
@@ -121,7 +121,7 @@ div[data-second_dive] {
 form input[type=submit] {
     min-width: 150px;
     display: block;
-    margin: 15px auto 0px;
+    margin: 15px auto 0;
     padding: 12px 15px;
     background-color: #4c9cff;
     border: 1px solid #f1f1f13d;
@@ -160,4 +160,41 @@ form input[type=submit]:hover {
 }
 .errors div {
     padding: 20px 0 0;
+}
+.container {
+    position: relative;
+}
+.lang {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: .5em;
+    font-weight: 600;
+    text-decoration: none;
+    text-shadow: -1px -1px 0 #f1F1F1, 1px -1px 0 #f1F1F1, -1px 1px 0 #f1F1F1, 1px 1px 0 #f1F1F1;
+    color: #445ef7;
+    background: linear-gradient(90deg, rgb(0, 0, 255) 0%, rgba(241,241,241,1) 50%, rgba(255,0,0,1) 100%);
+    border-radius: 5px;
+}
+.alert {
+    max-width: 750px;
+    margin: 10px auto;
+    position: relative;
+    z-index: 1;
+    top: 0;
+    background: #e84d4dcc;
+    border-radius: 10px;
+    padding: 35px 20px 20px;
+}
+.alert .close {
+    background-color: #f1F1F1;
+    padding: 5px 10px;
+    border-radius: 10px;
+    position: absolute;
+    top : 0;
+    right: 0;
+    text-decoration: none;
+    font-weight: 600;
+    color: #161616;
+    margin: 5px;
 }

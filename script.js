@@ -147,3 +147,44 @@ function calculateSimpleDive(label, inputDepth, inputDuration) {
 
     return diveStop
 }
+
+const lang = document.querySelector('.lang')
+lang.addEventListener('click', handleSwitchLang)
+
+function handleSwitchLang(e) {
+    e.preventDefault()
+    if (localStorage.getItem('lang') === "FR") {
+        localStorage.setItem('lang', 'EN')
+    } else {
+        localStorage.setItem('lang', 'FR')
+    }
+    updateTrad(localStorage.getItem('lang'))
+    location.reload()
+}
+
+const alert = document.querySelector('.alert')
+const closeAlert = document.querySelector('.alert .close')
+
+closeAlert.addEventListener('click', e => {
+    e.preventDefault()
+    alert.style.display = 'none'
+    document.cookie = `${encodeURIComponent('disable-alert')}=${encodeURIComponent('1')};expires=${(new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000)).toUTCString()}`
+})
+
+if (doesCookieExist('disable-alert') && getCookieValue('disable-alert')) {
+    alert.style.display = 'none'
+}
+
+function doesCookieExist(name) {
+    return document.cookie
+        .replace(/\s/g, "").split(';')
+        .map(cookie => cookie.split('=')[0])
+        .find(cookie => cookie === encodeURIComponent(name))
+}
+
+function getCookieValue(name) {
+    return document.cookie
+        .split("; ")
+        .find((row) => row.startsWith(`${name}=`))
+        ?.split("=")[1]
+}
