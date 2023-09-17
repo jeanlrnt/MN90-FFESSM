@@ -172,7 +172,7 @@ form input[type=submit]:hover {
     font-weight: 600;
     text-decoration: none;
     text-shadow: -1px -1px 0 #f1F1F1, 1px -1px 0 #f1F1F1, -1px 1px 0 #f1F1F1, 1px 1px 0 #f1F1F1;
-    color: #445ef7;
+    color: #161616;
     background: linear-gradient(90deg, rgb(0, 0, 255) 0%, rgba(241,241,241,1) 50%, rgba(255,0,0,1) 100%);
     border-radius: 5px;
 }
