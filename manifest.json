@@ -4,37 +4,37 @@
   "description": "A MN90-FFESSM calculator made with JavaScript",
   "theme_color": "#445ef7",
   "background_color": "#70e1f5",
-  "scope" : "/",
+  "scope" : "./",
   "display": "fullscreen",
-  "start_url": "/index.html",
+  "start_url": "./index.html",
   "icons": [
     {
-      "src": "/icons/48x48.png",
+      "src": "./icons/48x48.png",
       "type": "image/png",
       "sizes": "48x48"
     },
     {
-      "src": "/icons/72x72.png",
+      "src": "./icons/72x72.png",
       "type": "image/png",
       "sizes": "72x72"
     },
     {
-      "src": "/icons/128x128.png",
+      "src": "./icons/128x128.png",
       "type": "image/png",
       "sizes": "128x128"
     },
     {
-      "src": "/icons/192x192.png",
+      "src": "./icons/192x192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "/icons/256x256.png",
+      "src": "./icons/256x256.png",
       "type": "image/png",
       "sizes": "256x256"
     },
     {
-      "src": "/icons/512x512.png",
+      "src": "./icons/512x512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
