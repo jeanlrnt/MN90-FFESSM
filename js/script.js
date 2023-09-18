@@ -72,13 +72,19 @@ function handleLoad(e) {
             element.value = entry[1]
         }
     }
+
     if (urlParams.has('i') && urlParams.get('i') !== ''
         || urlParams.has('d2') && urlParams.get('d2') !== ''
         || urlParams.has('t2') && urlParams.get('t2') !== '' ) {
         checkbox.checked = 'on'
         handleSecondDive()
+        handleSubmit(e)
     }
-    handleSubmit(e)
+
+    if (urlParams.has('d1') && urlParams.get('d1') !== ''
+        || urlParams.has('t1') && urlParams.get('t1') !== '' ) {
+        handleSubmit(e)
+    }
 }
 
 const formSubmit = document.querySelector("input[type=submit]")
