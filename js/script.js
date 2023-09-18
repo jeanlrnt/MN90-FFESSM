@@ -159,7 +159,10 @@ function handleSwitchLang(e) {
         localStorage.setItem('lang', 'FR')
     }
     updateTrad(localStorage.getItem('lang'))
-    location.reload()
+    console.log(firstDiveStop)
+    if (firstDiveStop.length !== 0) {
+        handleSubmit(e)
+    }
 }
 
 const alert = document.querySelector('.alert')

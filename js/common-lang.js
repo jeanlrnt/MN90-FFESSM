@@ -74,6 +74,7 @@ function replaceInText(element, pattern, replacement) {
 
 const container = document.querySelector('.container')
 let dictionary
+let oldDictionary
 function updateTrad(lang) {
     if (!lang) {
         if (!localStorage.getItem('lang')) {
@@ -85,22 +86,22 @@ function updateTrad(lang) {
     switch (lang) {
         case 'FR' :
             dictionary = dictionaryFR
+            oldDictionary = dictionaryEN
             locale.textContent = "EN"
             break
         case 'EN' :
             dictionary = dictionaryEN
+            oldDictionary = dictionaryFR
             locale.textContent = "FR"
             break
         default :
             alert('This traduction does not exist')
     }
 
-    replaceInText(container, /First dive/g, dictionary.Fd)
-    replaceInText(container, /Second dive/g, dictionary.Sd)
-    replaceInText(container, /Depth/g, dictionary.Depth)
-    replaceInText(container, /Duration/g, dictionary.Duration)
-    replaceInText(container, /Surface interval/g, dictionary.Si)
-    replaceInText(container, /Calculate/g, dictionary.Calculate)
+    for (const key in oldDictionary) {
+        replaceInText(container, new RegExp(oldDictionary[key], 'g'), dictionary[key])
+    }
+
     document.querySelector('.alert .content').innerHTML = dictionary.alert
 }
 updateTrad()
