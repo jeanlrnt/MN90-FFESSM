@@ -1,17 +1,3 @@
-const checkbox = document.querySelector('#second_dive')
-checkbox.addEventListener('change', handleSecondDive)
-function handleSecondDive() {
-    secondDive = !secondDive
-    const secondDiveInputs = document.querySelectorAll('div[data-second_dive]')
-    secondDiveInputs.forEach(input => {
-        if (secondDive) {
-            input.style.display = "block"
-        } else {
-            input.style.display = "none"
-        }
-    })
-}
-
 function next(needle, haystack) {
     const sorted = haystack.sort((a, b) => a - b)
     return sorted.find(number => number >= needle)
@@ -45,6 +31,54 @@ function displayDivingStop(divingStop) {
     if (divingStop[4])
         result += `<p>15${dictionary.m} : ${divingStop[4]}${dictionary.min}</p>`
     return result ? result : dictionary.Ndsr
+}
+
+const checkbox = document.querySelector('#second_dive')
+checkbox.addEventListener('change', handleSecondDive)
+function handleSecondDive() {
+    secondDive = !secondDive
+    const secondDiveInputs = document.querySelectorAll('div[data-second_dive]')
+    secondDiveInputs.forEach(input => {
+        if (secondDive) {
+            input.style.display = "block"
+        } else {
+            input.style.display = "none"
+        }
+    })
+}
+
+const assoTable = {
+    'd1' : 'ddepth1',
+    't1' : 'dduration1',
+    'i' : 'interval',
+    'd2' : 'ddepth2',
+    't2' : 'dduration2',
+}
+window.addEventListener("load", handleLoad);
+
+function handleLoad(e) {
+    const urlParams = new URLSearchParams(window.location.search)
+    if (urlParams.has('local')) {
+        const local = urlParams.get('local')
+
+        if (['FR', 'EN'].includes(local) && localStorage.getItem('lang') !== local) {
+            handleSwitchLang(e)
+        }
+    }
+
+    for (const entry of urlParams.entries()) {
+        if (Object.keys(assoTable).indexOf(entry[0]) !== -1) {
+            const element = document.querySelector(`input[name=${assoTable[entry[0]]}]`)
+            element.value = entry[1]
+        }
+    }
+    if (urlParams.has('i') && urlParams.get('i') !== ''
+        || urlParams.has('d2') && urlParams.get('d2') !== ''
+        || urlParams.has('t2') && urlParams.get('t2') !== '' ) {
+        checkbox.checked = 'on'
+        handleSecondDive()
+    }
+    handleSubmit(e)
 }
 
 const formSubmit = document.querySelector("input[type=submit]")
@@ -159,7 +193,6 @@ function handleSwitchLang(e) {
         localStorage.setItem('lang', 'FR')
     }
     updateTrad(localStorage.getItem('lang'))
-    console.log(firstDiveStop)
     if (firstDiveStop.length !== 0) {
         handleSubmit(e)
     }
@@ -190,4 +223,33 @@ function getCookieValue(name) {
         .split("; ")
         .find((row) => row.startsWith(`${name}=`))
         ?.split("=")[1]
+}
+
+const share = document.querySelector('.share')
+share.addEventListener('click', handleShare)
+
+let lockShare = false
+function handleShare(e) {
+    e.preventDefault()
+    let params = []
+    for (const key in assoTable) {
+        const input = document.querySelector(`input[name=${assoTable[key]}]`)
+        params[key] = input.value
+    }
+
+    let link = `${location.host+location.pathname}?local=${localStorage.getItem('lang')}`
+    for (const key in params) {
+        link += "&" + key + "=" + params[key]
+    }
+
+    navigator.clipboard.writeText(link)
+
+    if(lockShare) return
+    lockShare = true
+    share.classList.add("active")
+
+    setTimeout(() => {
+        share.classList.remove("active")
+        lockShare = false
+    }, 1500)
 }
