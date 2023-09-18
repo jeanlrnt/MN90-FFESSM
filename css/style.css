@@ -6,12 +6,25 @@
   padding: 0;
 }
 
+html {
+  height: -webkit-fill-available;
+}
+
 body {
   min-height: 100vh;
   background: linear-gradient(160deg, #70e1f5, #445ef7);
   font-family: Lato, sans-serif;
   padding: clamp(5px, 5vw, 25px) 10px;
   color: #161616;
+    margin: 0;
+}
+
+/* Avoid Chrome to see Safari hack */
+@supports (-webkit-touch-callout: none) {
+    body {
+        /* The hack for Safari */
+        min-height: -webkit-fill-available;
+    }
 }
 
 main {
