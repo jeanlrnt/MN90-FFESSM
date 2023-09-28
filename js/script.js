@@ -240,7 +240,9 @@ function handleShare(e) {
     let params = []
     for (const key in assoTable) {
         const input = document.querySelector(`input[name=${assoTable[key]}]`)
-        params[key] = input.value
+        if (input.value) {
+            params[key] = input.value
+        }
     }
 
     let link = `${location.host+location.pathname}?local=${localStorage.getItem('lang')}`
