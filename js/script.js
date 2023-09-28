@@ -250,14 +250,14 @@ function handleShare(e) {
         link += "&" + key + "=" + params[key]
     }
 
-    navigator.clipboard.writeText(link)
+    navigator.clipboard.writeText(link).then(() => {
+        if(lockShare) return
+        lockShare = true
+        share.classList.add("active")
 
-    if(lockShare) return
-    lockShare = true
-    share.classList.add("active")
-
-    setTimeout(() => {
-        share.classList.remove("active")
-        lockShare = false
-    }, 1500)
+        setTimeout(() => {
+            share.classList.remove("active")
+            lockShare = false
+        }, 1500)
+    })
 }
