@@ -98,9 +98,6 @@ const errors = document.querySelector('.errors')
 function handleSubmit(e) {
     e.preventDefault()
     try {
-        if (!inputDepth1.value || !inputDuration1.value || inputDepth1.value <= 0 || inputDuration1.value <= 0) {
-            throw new Error(`<div>${dictionary.Dadvmbp}</div>`)
-        }
         results.innerHTML = ""
         variables.innerHTML = ""
         errors.innerHTML = ""
@@ -118,6 +115,9 @@ const inputInterval = document.querySelector('#interval')
 let secondDive = false
 let firstDiveStop = []
 function calculate() {
+    if (!inputDepth1.value || !inputDuration1.value || inputDepth1.value <= 0 || inputDuration1.value <= 0) {
+        throw new Error(`<div>${dictionary.Dadvmbp}</div>`)
+    }
     firstDiveStop = calculateSimpleDive(dictionary.Fd, inputDepth1.value, inputDuration1.value)
 
     if (secondDive && inputDepth2.value && inputDuration2.value) {
