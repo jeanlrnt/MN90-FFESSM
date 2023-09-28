@@ -124,8 +124,8 @@ div[data-second_dive] {
     margin: 15px auto 0;
 }
 
-form .submit, form .share {
-    min-width: 150px;
+form .submit, form .share, form .reset {
+    min-width: 70px;
     display: block;
     padding: 12px 15px;
     background-color: #4c9cff;
@@ -136,15 +136,26 @@ form .submit, form .share {
     font-size: 18px;
     cursor: pointer;
 }
-form .submit:hover, form .share:hover {
+form .submit:hover, form .share:hover, form .reset:hover {
     background-color: #1565c8;
 }
 form .submit {
-    flex: 1 1 75%;
+    flex: 1 1 550px;
+}
+form .reset-share {
+    flex: 1 1 120px;
+    display: flex;
+    gap: 10px;
+    fill: #f1F1F1;
 }
 form .share {
-    flex: 1 0 20%;
     position: relative;
+}
+form .reset, form .share {
+    flex: 1 1 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 form .share::after {
     content: "Copié !";

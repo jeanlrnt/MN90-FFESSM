@@ -20,7 +20,6 @@ const dictionaryFR = {
     'Duration' : 'Durée',
     'Si' : 'Interval de surface',
     'Calculate' : 'Calculer',
-    'Share' : 'Partager',
     'alert' : 'Ce calculateur est basé sur les tables de plongée MN90-FFESSM. Bien qu\'un grand soin soit apporté ' +
         'au résultat du calcul, il peut y avoir des erreurs dans les résultats, ce calculateur ne constitue en aucun cas une substitution ' +
         'à l\'utilisation d\'un ordinateur de plongée, d\'une lecture de tables ou de tout autre matériel de sécurité. ' +
@@ -49,7 +48,6 @@ const dictionaryEN = {
     'Duration' : 'Duration',
     'Si' : 'Surface interval',
     'Calculate' : 'Calculate',
-    'Share' : 'Share',
     'alert' : 'This calculator is based on the MN90-FFESSM dives tables. Although great care has been taken to ensure the accuracy ' +
         'of the calcul there may be errors in the results. This calculator is not a substitute for the use of a dive computer ' +
         'to the use of a dive computer, table reading or any other safety equipment. ' +
