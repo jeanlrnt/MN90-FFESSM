@@ -138,7 +138,7 @@ function calculate() {
             calculateSimpleDive(dictionary.Sd, inputDepth2.value, inputDuration2.value)
             return
         }
-        addVariable(`${dictionary.Rif} ${inputInterval.value} ${dictionary.minutes}`, refInterval, `${dictionary.min}`)
+        addVariable(`${dictionary.Rif} ${minToHour(inputInterval.value)}`, minToHour(refInterval))
 
         const nitCoef = Mn90Cr[firstDiveStop[5]][refIntervalPos]
         const refCoefPos = posNext(nitCoef, TbCoeff)
@@ -151,13 +151,13 @@ function calculate() {
         addVariable(`${dictionary.Rdf} ${inputDepth2.value} ${dictionary.meters}`, refDepth2, `${dictionary.m}`)
 
         const increase = Majo[refDepth2][refCoefPos]
-        addVariable(`${dictionary.Sdi}`, increase, `${dictionary.min}`)
+        addVariable(`${dictionary.Sdi}`, minToHour(increase))
 
         const increasedDuration = Number(inputDuration2.value) + increase
         const refDuration2 = next(increasedDuration, Mn90T[refDepth2])
         if (!refDuration2)
             throw new Error(`<div>${dictionary.Tdtdneitt.replace(':1:', increasedDuration).replace(':2:', refDepth2)}</div>`)
-        addVariable(`${dictionary.Rduf} ${increasedDuration} ${dictionary.minutes}`, refDuration2, `${dictionary.min}`)
+        addVariable(`${dictionary.Rduf} ${minToHour(increasedDuration)}`, minToHour(refDuration2))
         let secondDiveStop = Mn90P[refDepth2 +""+ refDuration2]
 
         results.innerHTML += `<div><h3>${dictionary.Sd}</h3>
@@ -177,7 +177,7 @@ function calculateSimpleDive(label, inputDepth, inputDuration) {
     const refDuration = next(inputDuration, Mn90T[refDepth])
     if (!refDuration)
         throw new Error(`<div>${dictionary.Tdtdneitt.replace(':1:', inputDuration).replace(':2:', refDepth)}</div>`)
-    addVariable(`${dictionary.Rduf} ${inputDuration} ${dictionary.minutes}`, refDuration, `${dictionary.min}`)
+    addVariable(`${dictionary.Rduf} ${minToHour(inputDuration)}`, minToHour(refDuration))
 
     const diveStop = Mn90P[refDepth +""+ refDuration]
     addVariable(`${dictionary.GPSfxmitxmt.replace(':1:', refDuration).replace(':2:', refDepth)}`, diveStop[5])
@@ -260,4 +260,15 @@ function handleShare(e) {
             lockShare = false
         }, 1500)
     })
+}
+
+function minToHour(value) {
+    const hours = Math.floor(value / 60)
+    const minutes = value % 60
+    if (hours === 0)
+        return `${value} ${dictionary.min}`
+    if (minutes === 0)
+        return `${hours}h`
+
+    return `${Math.floor(value / 60)}h${value % 60}`
 }
