@@ -125,7 +125,7 @@ function calculate() {
             throw new Error(`<div>${dictionary.Tsdipbttfsr}</div>`)
         if (inputDepth2.value <= 0 || inputDuration2.value <= 0)
             throw new Error(`<div>${dictionary.Dadvmbp}</div>`)
-        const refIntervalPos = posPrev(inputInterval.value, Mn90Interval)
+        const refIntervalPos = posPrev(inputInterval.value, Mn90Interval) - 1 // -1 because Mn90Cr is 1 indexed
         const refInterval = prev(inputInterval.value, Mn90Interval)
         if (!refInterval && Number(inputInterval.value) < 15) {
             results.innerHTML = ""
